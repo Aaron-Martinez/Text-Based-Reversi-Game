@@ -1,16 +1,33 @@
 import java.util.Scanner;
 
+/**
+ * This class represents a Player of the reversi game.
+ * 
+ * @author Aaron Martinez    <ajm21935@uga.edu>
+ * @author Matt Butcher    <mab48671@uga.edu>
+ *
+ */
 public abstract class Player {
 
-    protected int score;
-    protected char myPiece;
-    protected char opponentsPiece;
+    protected int score; //The total number of game pieces on the board
+    protected char myPiece; //An X or O depending on the player
+    protected char opponentsPiece; //The opposite of myPiece    
 
-    public void move(int row, int col) {
-	//some stuff
-
-    }//move    
-
+    /**
+     * The purpose of this method is to be overridden by each type
+     * of player in a different manner.
+     * @return String
+     * 				This string contains the indices of the move
+     * 				that the player wishes to do.
+     */
+    public abstract String move();
+	    
+	/**
+	 * Sets the instance variable myPiece to the value passed in as the
+	 * parameter.
+	 * @param piece
+	 * 			Either an O or X depending on the player using the method.
+	 */
     public void setMyPiece(char piece) {
     	myPiece = piece;
     	opponentsPiece = ' ';
@@ -20,76 +37,40 @@ public abstract class Player {
     		opponentsPiece = 'X';
     }
     
-    public void legalMove() {
-    	//check if a move is legal
-    	boolean legalMove = true;
-    	int moves = 0;
-		for(int i = 0; i < 8; i++) {
-		    for(int j = 0; j < 8; j++) {
-		    	checkRight(i, j);
-		    	checkLeft(i, j);
-		    	checkUp(i, j);
-		    	checkDown(i, j);
-		    	checkUpLeft(i, j);
-		    	checkDownLeft(i, j);
-		    	checkDownRight(i, j);
-		    	checkDownLeft(i, j);		    	
-		    }//for j
-		}//for i
-    }//legalMove()
- 
-    public boolean checkRight(int row, int col) {
-    	
-    /*	
-    	if (col>6)
-    		return false;
-    	
-    	if (myPiece == 'X')
-    	if(game.getGridDisplay()[row][col+1]=={			//opponents piece)
-			for(int m=col+2; m<=8; m++){
-				if(gridDisplay[row][m] == '.') return false;
-				if(gridDisplay[row][m] == myPiece ) return true;
-				if(gridDisplay[row][m] == opponentsPiece ) continue;
-			}
-    	}
-    	*/
-    	return true;
-    }//checkRight
-    
-    public boolean checkLeft(int row, int col){
-    	
+    /**
+     * Returns the instance variable myPiece of the player using the method.
+     * @return myPiece
+     * 			An instance variable that is either a O or X.
+     */
+    public char getMyPiece() {
+    	return myPiece;
     }
     
-    public boolean checkUp(int row, int col){
-    	
+    /**
+     * Returns the instance variable opponentsPiece of the player using the method.
+     * @return opponentsPiece
+     * 			An instance variable that is either a O or X.
+     */
+    public char getOpponentsPiece() {
+    	return opponentsPiece;
     }
     
-    public boolean checkDown(int row, int col){
-    	
+    /**
+     * Retrieves the value of the instance variable score.
+     * @return score
+     * 			The number of a player's game pieces on the board.
+     */
+    public int getScore() {
+    	return score;
     }
     
-	public boolean checkUpLeft(int row, int col){
-		
-	}	
-	
-	public boolean checkDownLeft(int row, int col){
-		
-	}
-	
-	public boolean checkDownRight(int row, int col){
-		
-	}
-	
-	public boolean checkUpRight(int row, int col){
-		
-	}   
-    
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * Sets the value of the instance variable score.
+     * @param score
+     * 			The number of a player's game pieces on the board.
+     */
+    public void setScore(int score) {
+    	this.score = score;
+    }
 
 }
